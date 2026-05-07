@@ -1,4 +1,6 @@
-export const GET_PROFILE_RESPONSE_MOCK = {
+import { ProfileResponse } from "../../src/types/profile";
+
+export const GET_PROFILE_RESPONSE_MOCK: ProfileResponse  = {
   "id": "41469841",
   "name": "msescortplus",
   "type": "ESCORT",

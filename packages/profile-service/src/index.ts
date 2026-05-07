@@ -1,1 +1,2 @@
-export * from "./get-profile";
+export { getProfile } from "./get-profile";
+export type { ProfileResponse } from "./types/profile";
