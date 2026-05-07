@@ -1,6 +1,5 @@
 import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/components/button";
-import { colors } from "@repo/ui/tokens/colors";
 import styles from "./page.module.css";
 import { getProfile } from "@repo/profile-service";
 
@@ -21,12 +20,12 @@ const ThemeImage = (props: Props) => {
 };
 
 export default async function Home() {
-  console.log("Colors:", colors);
   const profile = await getProfile({ name: "msescortplus" });
   const profiilePictures = profile?.pictures || [];
   console.log("Profile Pictures:", profiilePictures);
   return (
     <div className={styles.page}>
+      <Button appName="Next.js">Click Me</Button>
       {profiilePictures?.map((picture, index) => (
         <img
           key={index}

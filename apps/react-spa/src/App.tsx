@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProfile, ProfileResponse } from "@repo/profile-service";
+import { Button } from "@repo/ui/components/button";
 
 const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
 
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <Button appName="SPA">Click Me</Button>
       {pictures.map((picture, index) => (
         <img
           key={index}
