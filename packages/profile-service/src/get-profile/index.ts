@@ -1,11 +1,14 @@
 type GetProfileArgs = {
     name: string;
+    baseUrl?: string;
 };
 
-const BASE_URL = "https://www.hunqz.com/api/opengrid";
+const DEFAULT_BASE_URL = "https://www.hunqz.com";
 
-export async function getProfile({ name = 'msescortplus' }: GetProfileArgs) {
-    const res = await fetch(`${BASE_URL}/profiles/${name}`);
+export async function getProfile({ name = 'msescortplus', baseUrl = DEFAULT_BASE_URL }: GetProfileArgs) {
+    const res = await fetch(
+        `${baseUrl}/api/opengrid/profiles/${name}`
+    );
 
     if (!res.ok) {
         throw new Error(`Failed to fetch profile: ${res.status}`);
