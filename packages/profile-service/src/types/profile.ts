@@ -14,8 +14,8 @@ export interface ProfileResponse {
   telephone: string
   pictures: Picture[]
   reviews: Review[]
-  travel_locations: any[]
-  social_links: any[]
+  travel_locations: unknown[]
+  social_links: unknown[]
   is_public: boolean
   is_new: boolean
   creation_date: string
@@ -77,7 +77,7 @@ export interface Service {
   rate_night: number
   currency: string
   service_locations: string[]
-  service_offerings: any[]
+  service_offerings: unknown[]
 }
 
 export interface Sexual {

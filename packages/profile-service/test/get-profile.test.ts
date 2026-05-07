@@ -8,24 +8,24 @@ describe('getProfile', () => {
   });
 
   const mockFetchSuccess = () => {
-    global.fetch = vi.fn().mockResolvedValue({
+    globalThis.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => GET_PROFILE_RESPONSE_MOCK,
-    } as any);
+    });
   };
 
   const mockFetchNotFound = () => {
-    global.fetch = vi.fn().mockResolvedValue({
+    globalThis.fetch = vi.fn().mockResolvedValue({
       ok: false,
       status: 404,
-    } as any);
+    });
   };
 
   const mockFetchServerError = () => {
-    global.fetch = vi.fn().mockResolvedValue({
+    globalThis.fetch = vi.fn().mockResolvedValue({
       ok: false,
       status: 500,
-    } as any);
+    });
   };
 
   describe('happy path', () => {

@@ -1,23 +1,6 @@
-import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/components/button";
 import styles from "./page.module.css";
 import { getProfile } from "@repo/profile-service";
-
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
 
 export default async function Home() {
   const profile = await getProfile({ name: "msescortplus" });
@@ -27,6 +10,7 @@ export default async function Home() {
     <div className={styles.page}>
       <Button appName="Next.js">Click Me</Button>
       {profiilePictures?.map((picture, index) => (
+        /* eslint-disable-next-line @next/next/no-img-element */
         <img
           key={index}
           src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
