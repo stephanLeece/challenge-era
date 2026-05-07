@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { getProfile, ProfileResponse } from "@repo/profile-service";
-import { Button } from "@repo/ui/components/button";
+import { Button } from "@repo/ui/button";
 
 const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
-
-
 
 function App() {
   const [profile, setProfile] = useState<ProfileResponse | null>(null);
@@ -45,7 +43,13 @@ function App() {
 
   return (
     <>
-      <Button appName="SPA">Click Me</Button>
+      <Button>Click Me</Button>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+      <div className="bg-red-500 text-white p-8 text-3xl font-bold">
+        Tailwind test working
+      </div>
       {pictures.map((picture, index) => (
         <img
           key={index}

@@ -11,6 +11,7 @@
     "./styles.css": "./dist/index.css",
     "./*": "./dist/*.js"
   },
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "build:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css",

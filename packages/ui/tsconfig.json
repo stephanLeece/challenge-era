@@ -3,8 +3,18 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "./src",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx"
   },
-  "include": ["src"],
-  "exclude": ["dist", "build", "node_modules"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
 }
