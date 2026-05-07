@@ -11,12 +11,12 @@ export async function getProfile({ name = 'msescortplus', baseUrl = DEFAULT_BASE
     );
 
     if (!res.ok) {
-        throw new Error(`Failed to fetch profile: ${res.status}`);
+        if (res.status === 404) {
+            throw new Error('PROFILE_NOT_FOUND');
+        }
+
+        throw new Error(`PROFILE_FETCH_ERROR:${res.status}`);
     }
 
     return res.json();
-}
-
-export function testProfilesPackage() {
-    console.log("Profiles package is connected");
 }
