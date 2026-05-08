@@ -1,5 +1,6 @@
 import { getProfile } from "@repo/profile-service";
-import { Button } from "@repo/ui/button";
+import { Grid } from "@repo/ui/grid";
+import { Image} from "@repo/ui/image";
 
 export default async function Home() {
   const profile = await getProfile({ name: "msescortplus" });
@@ -7,17 +8,14 @@ export default async function Home() {
   console.log("Profile Pictures:", profiilePictures);
   return (
     <div>
-      <Button appName="next-js-app">
-        description
-      </Button>
+      <Grid>
         {profiilePictures?.map((picture, index) => (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          key={index}
-          src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
-          alt={`Profile Picture ${index + 1}`}
-        />))}
-
+          <Image
+            key={index}
+            src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
+            alt={`Profile Picture ${index + 1}`}
+          />))}
+      </Grid>
     </div>
   );
 }

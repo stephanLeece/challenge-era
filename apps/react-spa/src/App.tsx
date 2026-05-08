@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProfile, ProfileResponse } from "@repo/profile-service";
-import { Button } from "@repo/ui/button";
+import { Grid } from "@repo/ui/grid";
+import { Image} from "@repo/ui/image";
 
 const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
 
@@ -31,7 +32,7 @@ function App() {
     loadProfile();
   }, []);
 
-  const pictures = profile?.pictures ?? [];
+  const profiilePictures = profile?.pictures ?? [];
 
   if (loading) {
     return <div>Loading profile...</div>;
@@ -43,20 +44,14 @@ function App() {
 
   return (
     <>
-      <Button>Click Me</Button>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <div className="bg-red-500 text-white p-8 text-3xl font-bold">
-        Tailwind test working
-      </div>
-      {pictures.map((picture, index) => (
-        <img
-          key={index}
-          src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
-          alt={`Profile Picture ${index + 1}`}
-        />
-      ))}
+     <Grid>
+        {profiilePictures?.map((picture, index) => (
+          <Image
+            key={index}
+            src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
+            alt={`Profile Picture ${index + 1}`}
+          />))}
+      </Grid>
     </>
   );
 }
