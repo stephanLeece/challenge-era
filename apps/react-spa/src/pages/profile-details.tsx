@@ -48,7 +48,7 @@ export function ProfileDetails() {
         <Typography as="h2" className="text-white">
           Loading profile...
         </Typography>
-        <LoadingSpinner/>
+        <LoadingSpinner />
       </>
       );
     }

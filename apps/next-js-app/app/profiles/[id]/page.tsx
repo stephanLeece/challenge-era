@@ -10,7 +10,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
   let profile;
   try {
     profile = await getProfile({ name: profileName });
-  } catch (e) {
+  } catch {
     notFound();
   }
 
