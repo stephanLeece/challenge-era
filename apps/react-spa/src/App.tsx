@@ -1,63 +1,22 @@
-import { useEffect, useState } from "react";
-import { getProfile, ProfileResponse } from "@repo/profile-service";
-import { Grid } from "@repo/ui/grid";
-import { Image } from "@repo/ui/image";
-import { Navbar } from "@repo/ui/navbar";
-
-const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
+import { Routes, Route, Link } from 'react-router-dom';
+import { Home } from './pages/home.tsx';
+import { Profiles } from './pages/profiles.tsx';
+import { ProfileDetails } from './pages/profile-details.tsx';
 
 function App() {
-  const [profile, setProfile] = useState<ProfileResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadProfile() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const data = await getProfile({
-          name: "msescortplus",
-          baseUrl: proxyBaseUrl,
-        });
-
-        setProfile(data);
-      } catch (e) {
-        setError("Failed to load profile");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadProfile();
-  }, []);
-
-  const profiilePictures = profile?.pictures ?? [];
-
-  if (loading) {
-    return <div>Loading profile...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
-    <>
-      <Navbar><p className="text-xl uppercase font-bold text-red-600">Hunqz</p></Navbar>
-      <main className="px-4">
-        <h1 className="text-white text-lg">Profile Pictures for {profile?.name}</h1>
-        <Grid>
-          {profiilePictures?.map((picture, index) => (
-            <Image
-              key={index}
-              src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
-              alt={`Profile Picture ${index + 1}`}
-            />))}
-        </Grid>
-      </main>
-    </>
+    <div>
+      <nav>
+        <Link to="/">Home</Link> |{' '}
+        <Link to="/profiles">Profiles</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profiles" element={<Profiles />} />
+        <Route path="/profiles/:profileId" element={<ProfileDetails />} />
+      </Routes>
+    </div>
   );
 }
 
