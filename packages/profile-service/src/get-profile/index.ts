@@ -7,17 +7,17 @@ type GetProfileArgs = {
 
 const DEFAULT_BASE_URL = "https://www.hunqz.com";
 
-export async function getProfile({ name = 'msescortplus', baseUrl = DEFAULT_BASE_URL }: GetProfileArgs): Promise<ProfileResponse> {
+export async function getProfile({ name = '', baseUrl = DEFAULT_BASE_URL }: GetProfileArgs): Promise<ProfileResponse> {
     const res = await fetch(
         `${baseUrl}/api/opengrid/profiles/${name}`
     );
 
     if (!res.ok) {
         if (res.status === 404) {
-            throw new Error('PROFILE_NOT_FOUND');
+            throw new Error('Profile not found');
         }
 
-        throw new Error(`PROFILE_FETCH_ERROR:${res.status}`);
+        throw new Error(`There was an error fetching this profile: ${res.status}`);
     }
 
     /**

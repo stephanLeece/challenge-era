@@ -46,20 +46,20 @@ describe('getProfile', () => {
   });
 
   describe('unhappy path', () => {
-    it('throws PROFILE_NOT_FOUND when profile does not exist (404)', async () => {
+    it('throws prpfile not found when profile does not exist (404)', async () => {
       mockFetchNotFound();
 
       await expect(
         getProfile({ name: 'does-not-exist' })
-      ).rejects.toThrow('PROFILE_NOT_FOUND');
+      ).rejects.toThrow('Profile not found');
     });
 
-    it('throws PROFILE_FETCH_ERROR for server errors', async () => {
+    it('throws a fecth error for server errors', async () => {
       mockFetchServerError();
 
       await expect(
         getProfile({ name: 'msescortplus' })
-      ).rejects.toThrow('PROFILE_FETCH_ERROR:500');
+      ).rejects.toThrow('There was an error fetching this profile: 500');
     });
   });
 });
