@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getProfile, ProfileResponse } from "@repo/profile-service";
 import { Grid } from "@repo/ui/grid";
 import { Image } from "@repo/ui/image";
-import { Navbar } from "@repo/ui/navbar";
+import { Typography } from "@repo/ui/typography";
 
 const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
 
@@ -29,7 +29,7 @@ export function ProfileDetails() {
 
         setProfile(data);
       } catch (e) {
-        console.log({e})
+        console.log({ e })
         setError(`Whoops! ${e}`);
       } finally {
         setLoading(false);
@@ -44,25 +44,25 @@ export function ProfileDetails() {
   const renderContent = () => {
     if (loading) {
       return (
-        <p className="text-xl uppercase font-bold text-white">
+        <Typography as="h2" className="text-white">
           Loading profile...
-        </p>
+        </Typography>
       );
     }
 
     if (error) {
       return (
-        <p className="text-xl uppercase font-bold text-white">
+           <Typography as="h2" className="text-red-600">
           {error}
-        </p>
+        </Typography>
       );
     }
 
     return (
       <>
-        <h1 className="text-white text-lg">
+        <Typography as="h2" className="text-white">
           Profile Pictures for {profile?.name}
-        </h1>
+        </Typography>
         <Grid>
           {profilePictures?.map((picture, index) => (
             <Image
@@ -78,12 +78,7 @@ export function ProfileDetails() {
 
   return (
     <>
-      <Navbar>
-        <p className="text-xl uppercase font-bold text-red-600">Hunqz</p>
-      </Navbar>
-      <main className="px-4">
-        {renderContent()}
-      </main>
+      {renderContent()}
     </>
   );
 }

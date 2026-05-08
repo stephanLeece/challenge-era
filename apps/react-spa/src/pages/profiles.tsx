@@ -1,7 +1,9 @@
+import { Typography } from "@repo/ui/typography";
+
 export function Profiles() {
   return (
-    <main className="p-4">
-    <h1 className="text-white text-lg">This is where lots of profiles would be shown!</h1>
-    </main>
+    <Typography as="h2" className="text-white">
+      This is where lots of profiles would be shown!
+    </Typography>
   );
 }

@@ -1,11 +1,12 @@
 import { getProfile } from "@repo/profile-service";
 import { Grid } from "@repo/ui/grid";
 import { Image } from "@repo/ui/image";
+import { Typography } from "@repo/ui/typography";
 import { notFound } from 'next/navigation'
 
 export default async function ProfileDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id: profileName } = await params;
-  
+
   let profile;
   try {
     profile = await getProfile({ name: profileName });
@@ -13,11 +14,12 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
     notFound();
   }
 
-
   const profiilePictures = profile?.pictures || [];
   return (
-    <main className="px-4">
-      <h1 className="text-white text-lg">Profile Pictures for {profile?.name}</h1>
+    <>
+      <Typography as="h2" className="text-white">
+        Profile Pictures for {profile?.name}
+      </Typography>
       <Grid>
         {profiilePictures?.map((picture, index) => (
           <Image
@@ -26,6 +28,6 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
             alt={`Profile Picture ${index + 1}`}
           />))}
       </Grid>
-    </main>
+    </>
   );
 }
