@@ -14,7 +14,7 @@ export const Image = ({
   imgClassName = '',
   ...props
 }: ImageProps) => (
-  <div className={`ui:relative ui:block ui:w-full ui:aspect-square ui:overflow-hidden ui:rounded-lg ${className}`}>
+  <div className={`ui:relative ui:block ui:w-full ui:aspect-square ui:overflow-hidden ${className}`}>
     <img
       src={src}
       alt={alt}

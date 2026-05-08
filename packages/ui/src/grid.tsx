@@ -8,7 +8,7 @@ type GridProps = HTMLAttributes<HTMLDivElement> & {
 export const Grid = ({ children, className = '', ...props }: GridProps) => {
   return (
     <div
-      className={`ui:grid ui:grid-cols-2 ui:md:grid-cols-4 ui:lg:grid-cols-12 ui:gap-1 ${className}`}
+      className={`ui:grid ui:grid-cols-3 ui:md:grid-cols-4 ui:lg:grid-cols-6 ui:gap-0.5 ${className}`}
       {...props}
     >
       {children}
