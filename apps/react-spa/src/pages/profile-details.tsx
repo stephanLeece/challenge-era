@@ -4,6 +4,7 @@ import { getProfile, ProfileResponse } from "@repo/profile-service";
 import { Grid } from "@repo/ui/grid";
 import { Image } from "@repo/ui/image";
 import { Typography } from "@repo/ui/typography";
+import { LoadingSpinner } from "@repo/ui/loading-spinner";
 
 const proxyBaseUrl = import.meta.env.VITE_HUNQZ_PROXY_PATH;
 
@@ -43,16 +44,18 @@ export function ProfileDetails() {
 
   const renderContent = () => {
     if (loading) {
-      return (
+      return (<>
         <Typography as="h2" className="text-white">
           Loading profile...
         </Typography>
+        <LoadingSpinner/>
+      </>
       );
     }
 
     if (error) {
       return (
-           <Typography as="h2" className="text-red-600">
+        <Typography as="h2" className="text-red-600">
           {error}
         </Typography>
       );
