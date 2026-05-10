@@ -11,12 +11,10 @@ This repository is a Turborepo-powered monorepo containing two frontend applicat
 
 These packages provide:
 - ESLint / TypeScript / Tailwind configuration
-- A shared UI component library
+- A shared UI component library (`ui`)
 - A shared data-fetching service (`profile-service`)
 
 TypeScript is used throughout the entire repository.
-
-this REAS
 
 ---
 
@@ -28,8 +26,7 @@ this REAS
 
 ### React SPA (`apps/react-spa`)
 - Built with Vite
-- Client-side rendered
-- Shares the same core UI and data logic as the Next.js app
+- Client-side rendered (CSR)
 
 Both apps share the same look and functionality.
 
@@ -39,7 +36,7 @@ Both apps share the same look and functionality.
 
 ### `profile-service`
 - Exposes functions and types for fetching user profile data from a remote server
-- Includes unit tests (Vitest)
+- Includes unit tests via Vitest
 
 ### `ui`
 - React component library
@@ -55,15 +52,12 @@ Both apps share the same look and functionality.
 - Shared TypeScript configuration used across all apps and packages
 - Again, provided by the Turborepo starter so i can't take credit for this.
 
-
 ### `@repo/tailwind-config`
 - Shared Tailwind configuration used across all apps and packages
 - Defines design tokens and theme values
-- Currently separate from the UI package to keep setup simpler (this could be improved with more time)
+- Exposes theme tokens for brand colours. I don't love that these come from here rather than the ui package, but i would need to spend more time tweaking config to get them coming from the ui package after some unscuccesful timeboxed attempts. 
 
 ---
-
-
 
 ## Tech Stack
 
@@ -80,14 +74,11 @@ Both apps share the same look and functionality.
 
 ### Development workflow note
 
-Turborepo + pnpm workspaces handle package linking.
+Thanks to Turborepo magic, you don't need to rebuild packages everytime changes are made. This means:
+- Changes in shared packages are immediately reflected in consuming apps
+- You do not need to rebuild packages after making changes 
 
-This means:
-- Shared packages are consumed directly from source in development
-- Changes in shared packages are immediately reflected in apps
-- No need to rebuild packages after changes (in most cases)
-
-Only explicit `pnpm build` runs produce production builds.
+The only time i had to explicity run build was in the ui package when i created a new component file, but not when i changed an existing component. very cool!
 
 ---
 
@@ -95,15 +86,9 @@ Only explicit `pnpm build` runs produce production builds.
 
 ### Package manager
 
-This project uses **pnpm** as the package manager.
+This project uses pnpm as the package manager. It can be used with other package managers (e.g. Yarn or npm), but additional configuration changes would be required because the monorepo setup relies on pnpm-specific features (pnpm-workspace.yaml, pnpm-lock.yaml)
 
-npm or yarn could work with adjustments, but pnpm is required because the monorepo relies on:
-
-- `pnpm-workspace.yaml`
-- `pnpm-lock.yaml`
-- workspace-based dependency linking
-
-Stick with pnpm for consistency.
+For consistency and correctness, pnpm is recommended.
 
 ---
 
@@ -111,7 +96,7 @@ Stick with pnpm for consistency.
 
 The React SPA requires environment variables for API proxying (CORS handling for the profile service).
 
-Check the React SPA README for required variables and an example `.env` file.
+Check the React SPA README for required variables and an `.env.example` file.
 
 ---
 
