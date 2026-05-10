@@ -3,7 +3,7 @@ import { LoadingSpinner } from "@repo/ui/loading-spinner";
 
 export default function Loading() {
   return <>
-    <Typography as="h2" className="text-white">
+    <Typography as="h2" className="text-hunqz-light">
       Loading
     </Typography>
     <LoadingSpinner />

@@ -45,7 +45,7 @@ export function ProfileDetails() {
   const renderContent = () => {
     if (loading) {
       return (<>
-        <Typography as="h2" className="text-white">
+        <Typography as="h2" className="text-hunqz-light">
           Loading profile...
         </Typography>
         <LoadingSpinner />
@@ -55,7 +55,7 @@ export function ProfileDetails() {
 
     if (error) {
       return (
-        <Typography as="h2" className="text-red-600">
+        <Typography as="h2" className="text-hunqz-red">
           {error}
         </Typography>
       );
@@ -63,7 +63,7 @@ export function ProfileDetails() {
 
     return (
       <>
-        <Typography as="h2" className="text-white">
+        <Typography as="h2" className="text-hunqz-light">
           Profile Pictures for {profile?.name}
         </Typography>
         <Grid>

@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-hunqz-dark min-h-screen">
         <Navbar>
-          <Typography as="h1" className="uppercase text-red-600">
+          <Typography as="h1" className="uppercase text-hunqz-red">
             Hunqz
           </Typography>
         </Navbar>

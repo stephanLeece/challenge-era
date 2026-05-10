@@ -17,7 +17,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
   const profiilePictures = profile?.pictures || [];
   return (
     <>
-      <Typography as="h2" className="text-white">
+      <Typography as="h2" className="text-hunqz-light">
         Profile Pictures for {profile?.name}
       </Typography>
       <Grid>

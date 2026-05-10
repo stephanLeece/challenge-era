@@ -1,6 +1,2 @@
 @import "tailwindcss";
 @import "@repo/tailwind-config";
-
-body {
-  background-color: var(--dark);
-}

@@ -7,9 +7,9 @@ import { Typography } from '@repo/ui/typography';
 
 function App() {
   return (
-    <div>
+    <div className="bg-hunqz-dark min-h-screen">
       <Navbar>
-        <Typography as="h1" className="uppercase text-red-600">
+        <Typography as="h1" className="uppercase text-hunqz-red">
           Hunqz
         </Typography>
       </Navbar>
