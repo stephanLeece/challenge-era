@@ -1,28 +1,15 @@
-import React from 'react';
+import { ComponentProps } from 'react';
 import clsx from 'clsx';
 
-interface GridImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'className'> {
-  src: string;
-  alt: string;
-  className?: string;
-  imgClassName?: string;
-}
-
 export const GridImage = ({
-  src,
-  alt,
-  className = '',
-  imgClassName = '',
-  ...props
-}: GridImageProps) => (
-  <div className={clsx("ui:relative ui:block ui:w-full ui:aspect-square ui:overflow-hidden", className)}>
-    <img
-      src={src}
-      alt={alt}
-      className={clsx("ui:absolute ui:inset-0 ui:h-full ui:w-full ui:object-cover", imgClassName)}
-      {...props}
-    />
-  </div>
+  className,
+  ...imgProps
+}: ComponentProps<'img'>) => (
+  <img
+    className={clsx(
+      'ui:block ui:w-full ui:aspect-square ui:object-cover',
+      className
+    )}
+    {...imgProps}
+  />
 );
-
-

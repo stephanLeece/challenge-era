@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 
 type TypographyElement =
@@ -13,11 +13,11 @@ type TypographyElement =
     | 'div'
     | 'label';
 
-type TypographyProps = {
+interface TypographyProps {
     as?: TypographyElement;
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
-} & React.HTMLAttributes<HTMLElement>;
+};
 
 const variantStyles: Record<TypographyElement, string> = {
     h1: 'ui:text-4xl ui:font-bold',

@@ -1,7 +1,7 @@
-import { ReactNode, HTMLAttributes } from 'react';
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 
-type NavbarProps = HTMLAttributes<HTMLDivElement> & {
+interface NavbarProps {
     children: ReactNode;
     className?: string;
 };
