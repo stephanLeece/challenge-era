@@ -55,7 +55,7 @@ Both apps share the same look and functionality.
 ### `@repo/tailwind-config`
 - Shared Tailwind configuration used across all apps and packages
 - Defines design tokens and theme values
-- Exposes theme tokens for brand colours. I don't love that these come from here rather than the ui package, but i would need to spend more time tweaking config to get them coming from the ui package after some unscuccesful timeboxed attempts. 
+- Exposes theme tokens for brand colours. I don't love that these come from here rather than the ui package, but i would need to spend more time tweaking config to resolve this, after some unsuccessful timeboxed attempts. 
 
 ---
 
@@ -76,7 +76,7 @@ Both apps share the same look and functionality.
 
 Thanks to Turborepo magic, you don't need to rebuild packages everytime changes are made. This means:
 - Changes in shared packages are immediately reflected in consuming apps
-- You do not need to rebuild packages after making changes 
+- You do not need to rebuild packages constantly
 
 The only time i had to explicity run build was in the ui package when i created a new component file, but not when i changed an existing component. very cool!
 
