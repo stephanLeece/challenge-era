@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# React SPA (`apps/react-spa`)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the client-side rendered (CSR) application in the monorepo, built with React and Vite.
 
-Currently, two official plugins are available:
+It mirrors the Next.js application in looks and functionality.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## What this app does
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Displays user profile data fetched from a remote API
+- Uses shared UI components from the `ui` package
+- Uses `profile-service` for all data fetching and typing
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Shared architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This app is part of a monorepo and depends on shared packages:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `ui` → shared component library
+- `profile-service` → API/data layer
+- shared ESLint / TypeScript / Tailwind configs
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+See the README in the monorepo root for more details.
+---
+
+## CORS handling
+
+The remote API used for profile data does not support direct browser requests due to CORS restrictions.
+
+To work around this, the app uses a **configurable proxy base URL**.
+
+This allows API requests to be routed through a proxy during development.
+
+---
+
+## Environment variables
+
+You must create a `.env` file in this app directory:
+
+```bash
+VITE_API_BASE_URL=<your-proxy-url>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This value is consumed by profile-service when constructing API requests.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Without this variable, profile data will not load in the SPA.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+You can choose whichever value you want, i went with "/hunqz". i went with an env variable rather than hardcoding, as it is used in 2 different places (within a component, and within vite config), so it's a bit safer rather than having to change it in multiple places
+
+## Getting started
+
+Install dependencies (from the root of the monorepo):
+
+```bash
+pnpm install
 ```
+
+Run the app. Either:
+
+From within the react-spa folder
+```bash
+pnpm dev
+```
+
+Alternatively, from the monorepo root
+```bash
+pnpm --filter react-spa dev
+```
+
+Then go to `http://localhost:5173/profiles/msescortplus`

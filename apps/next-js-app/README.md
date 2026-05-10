@@ -4,6 +4,8 @@ This is the server-side rendered (SSR) application in the monorepo.
 
 It is built with Next.js and consumes shared packages for UI components and data fetching.
 
+It mirrors the React SPA application in looks and functionality.
+
 ---
 
 ## What this app does
@@ -36,15 +38,16 @@ Install dependencies (from the root of the monorepo):
 pnpm install
 ```
 
-Run the app (from within the next-js-app folder):
+Run the app. Either:
 
+From within the next-js-app folder
 ```bash
 pnpm dev
 ```
 
-Alternatively, from the monorepo root:
+Alternatively, from the monorepo root
 ```bash
 pnpm --filter next-js-app dev
 ```
 
-Then go to http://localhost:3001/profiles/msescortplus 
+Then go to `http://localhost:3001/profiles/msescortplus`
