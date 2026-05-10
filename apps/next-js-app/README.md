@@ -25,8 +25,7 @@ This app is part of a monorepo and depends on shared packages:
 - `profile-service` → API/data layer
 - shared ESLint / TypeScript / Tailwind configs
 
-Changes in shared packages are reflected immediately during development via workspace linking.
-
+See the README in the monorepo root for more details.
 ---
 
 ## Getting started
@@ -43,4 +42,9 @@ Run the app (from within the next-js-app folder):
 pnpm dev
 ```
 
-Then go to http://localhost:3001
+Alternatively, from the monorepo root:
+```bash
+pnpm --filter next-js-app dev
+```
+
+Then go to http://localhost:3001/profiles/msescortplus 
