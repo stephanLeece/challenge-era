@@ -4,6 +4,7 @@ import { Typography } from "@repo/ui/typography";
 import "@repo/ui/styles.css";
 
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Erasys Challenge: Next.js App",
@@ -19,9 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-hunqz-dark min-h-screen">
         <Navbar>
-          <Typography as="h1" className="uppercase text-hunqz-red">
-            Hunqz
-          </Typography>
+          <Link href={"/"}>
+            <Typography as="h1" className="uppercase text-hunqz-red">
+              Hunqz
+            </Typography>
+          </Link>
         </Navbar>
         <main className="p-4">
           {children}

@@ -9,9 +9,11 @@ function App() {
   return (
     <div className="bg-hunqz-dark min-h-screen">
       <Navbar>
-        <Typography as="h1" className="uppercase text-hunqz-red">
-          Hunqz
-        </Typography>
+        <Link to={"/"}>
+          <Typography as="h1" className="uppercase text-hunqz-red">
+            Hunqz
+          </Typography>
+        </Link>
       </Navbar>
       <main className="p-4">
         <Routes>
