@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { getProfile, ProfileResponse } from "@repo/profile-service";
 import { Grid } from "@repo/ui/grid";
-import { Image } from "@repo/ui/image";
+import { GridImage } from "@repo/ui/grid-image";
 import { Typography } from "@repo/ui/typography";
 import { LoadingSpinner } from "@repo/ui/loading-spinner";
 
@@ -68,7 +68,7 @@ export function ProfileDetails() {
         </Typography>
         <Grid>
           {profilePictures?.map((picture, index) => (
-            <Image
+            <GridImage
               key={index}
               src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
               alt={`Profile Picture ${index + 1}`}

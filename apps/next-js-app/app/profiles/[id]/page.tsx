@@ -1,6 +1,6 @@
 import { getProfile } from "@repo/profile-service";
 import { Grid } from "@repo/ui/grid";
-import { Image } from "@repo/ui/image";
+import { GridImage } from "@repo/ui/grid-image";
 import { Typography } from "@repo/ui/typography";
 import { notFound } from 'next/navigation'
 
@@ -22,7 +22,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
       </Typography>
       <Grid>
         {profiilePictures?.map((picture, index) => (
-          <Image
+          <GridImage
             key={index}
             src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
             alt={`Profile Picture ${index + 1}`}

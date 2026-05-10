@@ -1,20 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
 
-interface ImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'className'> {
+interface GridImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'className'> {
   src: string;
   alt: string;
   className?: string;
   imgClassName?: string;
 }
 
-export const Image = ({
+export const GridImage = ({
   src,
   alt,
   className = '',
   imgClassName = '',
   ...props
-}: ImageProps) => (
+}: GridImageProps) => (
   <div className={clsx("ui:relative ui:block ui:w-full ui:aspect-square ui:overflow-hidden", className)}>
     <img
       src={src}
