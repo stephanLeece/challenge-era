@@ -67,4 +67,4 @@ Changes to the styles.css `@imports` also require this package to be rebuilt:
 pnpm build:styles
 ```
 
-But style declarations like tokens don't. Also very cool!
+But style declarations such as tokens don't. Also very cool!
