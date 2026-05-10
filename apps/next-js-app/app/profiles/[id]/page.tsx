@@ -13,12 +13,15 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
   } catch {
     notFound();
   }
-
+  console.log({ profile })
   const profiilePictures = profile?.pictures || [];
   return (
     <>
       <Typography as="h2" className="text-hunqz-light">
         Profile Pictures for {profile?.name}
+      </Typography>
+      <Typography as="p" className="text-hunqz-light">
+        {profile.headline}
       </Typography>
       <Grid>
         {profiilePictures?.map((picture, index) => (

@@ -53,10 +53,10 @@ export function ProfileDetails() {
       );
     }
 
-    if (error) {
+    if (error || !profile) {
       return (
         <Typography as="h2" className="text-hunqz-red">
-          {error}
+          {error ?? "An unexpected error occurred while loading the profile."}
         </Typography>
       );
     }
@@ -64,7 +64,10 @@ export function ProfileDetails() {
     return (
       <>
         <Typography as="h2" className="text-hunqz-light">
-          Profile Pictures for {profile?.name}
+          Profile Pictures for {profile.name}
+        </Typography>
+        <Typography as="p" className="text-hunqz-light">
+          {profile.headline}
         </Typography>
         <Grid>
           {profilePictures?.map((picture, index) => (
