@@ -43,7 +43,7 @@ You must create a `.env` file in this app directory:
 VITE_API_BASE_URL=<your-proxy-url>
 ```
 
-This value is consumed by profile-service when constructing API requests.
+This value is consumed by profile-service when constructing API requests, due to the need for proxying (See above section on CORS handling)
 
 Without this variable, profile data will not load in the SPA.
 
