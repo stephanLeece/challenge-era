@@ -126,3 +126,5 @@ pnpm build
 
 #### Build single packages:
 `pnpm build --filter ['app/package name']`
+
+(Note: you can also run app/package commands from within their respective folders, bu it's a nice time saver to be able to do it from the repo root)
