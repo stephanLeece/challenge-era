@@ -14,7 +14,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
     notFound();
   }
 
-  const profiilePictures = profile?.pictures || [];
+  const profilePictures = profile?.pictures || [];
   return (
     <>
       <Typography as="h2" className="text-hunqz-light">
@@ -24,7 +24,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
         {profile.headline}
       </Typography>
       <Grid>
-        {profiilePictures?.map((picture, index) => (
+        {profilePictures?.map((picture, index) => (
           <GridImage
             key={index}
             src={`https://www.hunqz.com/img/usr/original/0x0/${picture.url_token}.jpg`}
