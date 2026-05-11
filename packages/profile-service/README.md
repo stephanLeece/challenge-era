@@ -75,3 +75,13 @@ tests are in their own folder outside of src. For packages with alot of files to
 ```bash
 pnpm test
 ```
+
+### How to use
+
+In package.json > dependencies:
+`"@repo/profile-service": "workspace:*",`
+
+Then you can import where needed:
+```
+import { getProfile } from "@repo/profile-service";
+```

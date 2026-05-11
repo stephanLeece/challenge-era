@@ -41,9 +41,12 @@ Components are (React) framework-agnostic and designed to work in both:
 
 ---
 
-## Usage
+## How to use
 
-Components can be imported directly from the package:
+In package.json > dependencies:
+`"@repo/profile-service": "workspace:*",`
+
+Then Components can be imported directly from the package:
 
 ```ts
 import { Typography } from "@repo/ui/typography";
