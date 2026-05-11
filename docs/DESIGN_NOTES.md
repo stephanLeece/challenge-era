@@ -110,11 +110,11 @@ Without access to API documentation (e.g. Swagger), I had to infer the profile r
 I try to treat AI tools as assistants who are really eagar to please, but often don't know the answer and are embaressed to admit it so will make things up. Below are some examples of how i try to use AI in my workflow
 
 ### Sounding board/Stack overflow replacement
-"Here's an error message i'm getting, here's the stack trace, can you help me debug this?"
-"How could i clean up the conditional rendering here"?
-"What's a more concise name for this function?"
-"Please convert these notes into a README for package X. Use Markdown format, and structure as follows:..."
-"Here are tests for the happy path of this function, can you generate some tests for the following unhappy paths..."
+- "Here's an error message i'm getting, here's the stack trace, can you help me debug this?"
+- "How could i clean up the conditional rendering here"?
+- "What's a more concise name for this function?"
+- "Please convert these notes into a README for package X. Use Markdown format, and structure as follows:..."
+- "Here are tests for the happy path of this function, can you generate some tests for the following unhappy paths..."
 
 Usually there is a back and forth / iteration on the output as it's never good to accept the initial response at face value!
 
