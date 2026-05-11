@@ -92,7 +92,7 @@ For consistency and correctness, pnpm is recommended.
 
 ### Environment variables
 
-The React SPA relies on an ENV variable for API proxying (CORS handling for the profile service). You'll need to create this file and set a value before you can successfully run the react-spa app. Check the react-spa app's README for details and an `.env.example` file.
+The React SPA relies on an ENV variable for API proxying (CORS handling for the profile service). You'll need to create and populate an `.env.local` file before you can successfully run the react-spa app. Check the react-spa app's README for details and an `.env.example` file.
 
 ---
 
