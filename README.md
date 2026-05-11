@@ -84,6 +84,10 @@ The only time i had to explicity run build was in the ui package when i created 
 
 ## Prerequisites
 
+### Node version
+
+Requires Node.js version 18 or higher
+
 ### Package manager
 
 This project uses pnpm as the package manager. It can be used with other package managers (e.g. Yarn or npm), but additional configuration changes would be required because the monorepo setup relies on pnpm-specific features (pnpm-workspace.yaml, pnpm-lock.yaml)

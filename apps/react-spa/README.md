@@ -43,11 +43,11 @@ You must create a `.env` file in this app directory:
 VITE_API_BASE_URL=<your-proxy-url>
 ```
 
-This value is consumed by profile-service when constructing API requests, due to the need for proxying (See above section on CORS handling)
+This value is consumed by profile-service when constructing API requests, due to the need for proxying (See above section on CORS handling). i chose to set this via an env variable rather than hardcoding, as it is used in 2 different places (within a component, and within vite config), so it's a bit safer rather than having to change it in multiple places
 
 Without this variable, profile data will not load in the SPA.
 
-You can choose whichever value you want, i went with "/hunqz". i went with an env variable rather than hardcoding, as it is used in 2 different places (within a component, and within vite config), so it's a bit safer rather than having to change it in multiple places
+You can choose whichever value you want, i went with "/hunqz". 
 
 ## Getting started
 

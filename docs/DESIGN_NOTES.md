@@ -101,16 +101,15 @@ The `www.hunqz.com/api/opengrid/profiles` endpoint doesn't allow browser access 
 I’m not an expert in configuring tailwind so a good chunk of time was spent getting the shared config / styles working. What really helped me here was looking into code examples at [https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/README.md](https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/README.md) and reverse engineering.
 
 
-### Type handling
+### Type Declaration
 
-Without access to api documentation (e.g. Swagger) i had to make a guess of the profile response type based on the response. This introduces a little uncertainty, but I think it is acceptable for the scope of the challenge. Naturally for a real project I would want to have 100% accurate typing.
+Without access to API documentation (e.g. Swagger), I had to infer the profile response type from the actual API response. This introduces a small degree of uncertainty, but I think it's okay within the scope of this challenge. In a real project, I'd want to use accurate typings based on documented API contracts.
 
 ## AI Usage
 
-I try to treat AI tools as assistants who are really eagar to please, but often don't know the answer and are embaressed to admit it so will make things up. 
+I try to treat AI tools as assistants who are really eagar to please, but often don't know the answer and are embaressed to admit it so will make things up. Below are some examples of how i try to use AI in my workflow
 
 ### Sounding board/Stack overflow replacement
-For example: 
 "Here's an error message i'm getting, here's the stack trace, can you help me debug this?"
 "How could i clean up the conditional rendering here"?
 "What's a more concise name for this function?"
@@ -120,10 +119,9 @@ For example:
 Usually there is a back and forth / iteration on the output as it's never good to accept the initial response at face value!
 
 ### Code generation via copilot in VSCode
-For example: 
-For making dumb components: "Make me a tailwind styled nav bar compontent with 12px padding, 32px min height, 100% of parent width. Tailwind classes should be prefixed with ui:. On desktop it should X, on moobile Y... It should accept the following props with the following types:.."
+For making dumb components: "Make me a tailwind styled nav bar compontent with 12px padding, 32px min height, 100% of parent width. Tailwind classes should be prefixed with ui:. It should use our design tokens... On desktop it should do X, on mobile Y... It should accept the following props with the following types:.."
 
-And then checking what copilot created to make sure it fits requrequirements, matches project syntax etc.
+Before using the component i would double check what copilot created to make sure it's fit for purpose: Matches requrequirements/syntax conventions, doesn't introducte errors / compatability issues and so on.
 
 
 ## Lighthouse Audits
