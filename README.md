@@ -68,10 +68,6 @@ Both apps share the same look and functionality.
 - [React](https://react.dev/) + [Vite](https://vitejs.dev/)
 - [Vitest](https://vitest.dev/)
 
----
-
-## Running the Project
-
 ### Development workflow note
 
 Thanks to Turborepo magic, you don't need to rebuild packages everytime changes are made. This means:
@@ -98,11 +94,11 @@ For consistency and correctness, pnpm is recommended.
 
 ### Environment variables
 
-The React SPA requires environment variables for API proxying (CORS handling for the profile service).
-
-Check the React SPA README for required variables and an `.env.example` file.
+The React SPA relies on an ENV variable for API proxying (CORS handling for the profile service). You'll need to create this file and set a value before you can successfully run the react-spa app. Check the react-spa app's README for details and an `.env.example` file.
 
 ---
+
+## Running the Project
 
 #### Installation
 
