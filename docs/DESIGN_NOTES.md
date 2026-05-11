@@ -1,247 +1,151 @@
-Design Notes -- Monorepo Code Challenge
-======================================
+# Design Notes – Monorepo Code Challenge
 
-This document captures the thinking, decisions, trade-offs, and development process behind this monorepo implementation.
+This document explains the development process of this monorepo implementation.
 
-It is intended to complement the codebase by explaining why things were built the way they were.
-
-* * * * *
-
-1\. Challenge requirements
---------------------------
+## Summary of challenge requirements
 
 The goal was to build a monorepo containing:
 
 -   A Next.js app (SSR, SEO-friendly)
-
--   A React SPA (CSR, Vite-based)
-
+-   A React SPA (CSR)
 -   A shared module for fetching user profile data from a remote API
+    
 
 Both applications needed to:
 
 -   Use TypeScript for type safety
-
 -   Use Tailwind CSS for styling
-
 -   Display fetched profile images
-
--   Share a common data layer and UI components
+    
 
 Additional constraints:
 
 -   Fetch profile data from a fixed API endpoint
-
 -   Handle CORS restrictions
+-   Include minimal unit tests in the shared data fetching module
 
--   Include minimal unit tests for shared logic
+    
+## How I broke the work down
 
--   Ensure Next.js app is SEO friendly
-
-* * * * *
-
-2\. How I broke the work down
------------------------------
-
-I started by focusing on getting the system working end-to-end before worrying about polish or architecture refinement.
-
-The approach was roughly:
-
-### Step 1 -- Get a working monorepo
+### Step 1 – Get a working monorepo
 
 -   Start from a Turborepo template
-
 -   Ensure apps can run independently
-
 -   Confirm shared packages can be imported correctly
+    
 
-### Step 2 -- Get data flowing
+### Step 2 – Get data flowing
 
 -   Build a shared profile-service
-
 -   Fetch real API data
-
 -   Handle errors and types in one place
+-   Add basic tests (Vitest)
+    
 
-### Step 3 -- Shared UI layer
+### Step 3 – Shared UI
 
 -   Add a reusable UI package
-
 -   Avoid duplicating components between apps
-
 -   Standardise styling across both apps
+    
 
-### Step 4 -- Make it production-like
+### Step 4 – Build out App functionality
 
+-   Fix CORS in react SPA via proxy setup
 -   Add routing
+-   Handle app loading + error states
 
--   Handle loading + error states
-
--   Add basic tests (Vitest)
-
--   Fix CORS via proxy setup
-
-### Step 5 -- Polish
+### Step 5 – Polish
 
 -   Tailwind fixes across packages
-
 -   UI refinements (grid, loading states)
-
 -   Lighthouse audits
-
 -   Small refactors and cleanup
+    
 
-The key idea was: get it working first, then improve structure once the system exists.
-
-* * * * *
-
-3\. Tech choices
-----------------
+## Tech choices
 
 ### Monorepo tooling
 
 I considered:
 
 -   Turborepo
-
 -   Nx
-
 -   Lerna
+    
 
-All are valid, but I chose Turborepo because:
+All are mature technologies with good documentation and valid choices, but I chose Turborepo because:
 
 -   I already had some familiarity with it
-
 -   Fast setup and good developer experience
-
 -   Easy to run multiple apps and shared packages
-
 -   Well supported and widely used
 
-In a real production setup, the decision would depend on team standards, scale, and long-term maintainability.
+Note: In a real production setup, the decision of which choice to go for would depend as well on team standards, scale, and long-term maintainability.
 
-* * * * *
-
+One things i really like about Turborepo (though this may be true of other monorepo build systems) is that you can define package dependencies in the monorepo root and have your packages/apps use them rather than defining their package dependencies. This is great to ensure consistent versioning. I’ve had projects where a design system app  updated to React 18 and multiple consuming micro-frontends then broke.. It’s good to keep everything on the same version!
+    
 ### Starter choice
 
-I used the official Turborepo + Next.js starter from Vercel to avoid spending time on boilerplate and focus on architecture and implementation.
+I used the "official" Turborepo + Next.js starter from Vercel to avoid spending time on boilerplate and focus on architecture and implementation.
 
-* * * * *
 
-### Key architectural decisions
+## Challenges
 
--   Shared UI package for reusable components
+### CORS
 
--   Shared profile-service for all API access and types
+The `www.hunqz.com/api/opengrid/profiles` endpoint doesn't allow browser access (no Access-Control-Allow-Origin: \* response header). For the Next-js app this isn’t a problem since currently the data fetching happens on the server, but the react-spa needs to be client side rendered. Luckily Vite allows you to configure a proxy (see apps/react-spa/[vite.config.ts](http://vite.config.ts)). I would expect for production, the endpoint would have some kind of `Access-Control-Allow-Origin: some specific domains` but for development the proxying works nicely.
 
--   Centralised configuration for ESLint / TypeScript / Tailwind
+### Tailwind configuration
 
--   Separation of SSR (Next.js) and CSR (React SPA)
+I’m not an expert in configuring tailwind so a good chunk of time was spent getting the shared config / styles working. What really helped me here was looking into code examples at [https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/README.md](https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/README.md) and reverse engineering.
 
-The goal was to keep boundaries clean while still allowing reuse.
 
-* * * * *
+### Type handling
 
-4\. Challenges
---------------
+Without access to api documentation (e.g. Swagger) i had to make a guess of the profile response type based on the response. This introduces a little uncertainty, but I think it is acceptable for the scope of the challenge. Naturally for a real project I would want to have 100% accurate typing.
 
-### 1\. CORS
+## AI Usage
 
-The API does not allow direct browser access.
+I try to treat AI tools as assistants who are really eagar to please, but often don't know the answer and are embaressed to admit it so will make things up. 
 
-This was solved by introducing:
+### Sounding board/Stack overflow replacement
+For example: 
+"Here's an error message i'm getting, here's the stack trace, what could the cause be?"
+"How could i clean up the conditional rendering here"?
+"What's a more concise name for this function?"
 
--   a configurable proxy base URL
+Usually there is a back and forth / iteration on the output as it's never good to accept the initial response at face value!
 
--   environment-based configuration per app
+### Code generation via copilot in VSCode
+For example: 
+For making dumb components: "Make me a tailwind styled nav bar compontent with 12px padding, 32px min height, 100% of parent width. Tailwind classes should be prefixed with ui:. On desktop it should X, on moobile Y... It should accept the following props with the following types:.."
 
-This allowed both SSR and CSR apps to use the same data layer without duplication.
+And then checking what copilot created to make sure it fits requrequirements, matches project syntax etc.
 
-* * * * *
 
-### 2\. Tailwind across a monorepo
+## Lighthouse Audits
 
-One of the more time-consuming parts was getting Tailwind working consistently across:
+Next.js  
+![nextjs lighthouse audit screenshot](assets/nextJs-lighthouse-results.png)
 
--   Next.js app
+React  
+![react spa lighthouse audit screenshot](assets/react-lighthouse-results.png)
 
--   React SPA
 
--   shared UI package
+Room for improvement here. It looks like the hunqz endpoint doesn't accept height/width params for images otherwise I would try requesting at a smaller size.
 
-Issues included:
 
--   content scanning across workspace packages
+## Improvements / Iterations
 
--   style prefixing (ui:) to avoid collisions
-
--   build pipeline consistency
-
-Once stable, it worked well, but the initial setup required iteration.
-
-* * * * *
-
-### 3\. Monorepo configuration complexity
-
-Some friction came from aligning:
-
--   TypeScript configs across packages
-
--   ESLint module formats (.mjs)
-
--   Vite + Next.js differences in build expectations
-
-Most of this was configuration alignment rather than logic issues.
-
-* * * * *
-
-### 4\. UI package build behaviour
-
-A key learning point:
-
--   New components require a build step before being consumed
-
--   Existing components update without rebuild
-
--   Style pipeline changes require additional rebuild steps
-
-This is fine in a controlled monorepo but is worth being aware of.
-
-* * * * *
-
-### 5\. Type handling
-
-Types for API responses are inferred from the endpoint rather than formally defined.
-
-This introduces some uncertainty, but was acceptable for the scope of the challenge.
-
-* * * * *
-
-6\. Lighthouse Audits
----------------------
-
-Next.js\
-React
-
-Room for improvement maybe. It looks like the hunqz endpoint doesn't accept height/width params for images otherwise I would try requesting at a smaller size.
-
-* * * * *
-
-7\. Improvements / Iterations
------------------------------
-
-The challenge took me around 8--9 hours in total.
+The challenge took me around 8–9 hours in total.
 
 There are of course things that could be improved or expanded on, but there comes a point with timeboxed work where you have to find an appropriate stopping point.
 
 If I had more time, I would look into:
 
 -   Add React Query for caching and request state management
-
 -   Improve error messaging consistency across apps
-
 -   Add runtime schema validation for API responses
-
 -   Improve component test coverage (UI layer)
-
 -   Have design tokens within the ui package (rather than the current mixed approach)

@@ -4,7 +4,7 @@ This is the main README for the monorepo.
 
 Each app and package contains its own README with more specific details.
 
-There is an accompanying guide - DESIGN_NOTES.md - that covers key decisions and challenges.
+There is an accompanying guide - DESIGN_NOTES.md - that covers key decisions and challenges in the docs folder.
 
 # No i mean what is this repository?
 This repository is a Turborepo-powered monorepo containing two frontend applications and a set of shared packages consumed by both apps.
