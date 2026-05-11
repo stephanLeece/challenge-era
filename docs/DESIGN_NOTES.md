@@ -114,6 +114,7 @@ For example:
 "Here's an error message i'm getting, here's the stack trace, what could the cause be?"
 "How could i clean up the conditional rendering here"?
 "What's a more concise name for this function?"
+"Can you convert these notes into a README for package X"
 
 Usually there is a back and forth / iteration on the output as it's never good to accept the initial response at face value!
 
