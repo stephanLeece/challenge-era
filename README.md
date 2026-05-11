@@ -30,7 +30,7 @@ TypeScript is used throughout the entire repository.
 
 Both apps share the same look and functionality.
 
-Note: In real projecys I would not name production apps after the framework they use as this is asking for trouble in the future (What if we switch the react-spa to Vue?!). I name them like this for the coding challege for transparency.
+Note: In real projects I would not name production apps after the framework they use as this is asking for trouble in the future (What if we switch the react-spa to Vue?!). I name them like this for the coding challege for the sake of transparency.
 
 ---
 
