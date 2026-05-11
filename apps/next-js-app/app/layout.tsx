@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navbar } from "@repo/ui/navbar";
 import { Typography } from "@repo/ui/typography";
 import "@repo/ui/styles.css";
 
 import "./globals.css";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Erasys Challenge: Next.js App",

@@ -13,7 +13,7 @@ export default async function ProfileDetails({ params }: { params: Promise<{ id:
   } catch {
     notFound();
   }
-  console.log({ profile })
+
   const profiilePictures = profile?.pictures || [];
   return (
     <>

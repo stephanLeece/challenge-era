@@ -30,7 +30,6 @@ export function ProfileDetails() {
 
         setProfile(data);
       } catch (e) {
-        console.log({ e })
         setError(`Whoops! ${e}`);
       } finally {
         setLoading(false);
